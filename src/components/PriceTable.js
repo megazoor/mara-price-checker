@@ -13,7 +13,7 @@ const PriceTable = () => {
 
   const fetchData = async () => {
     try {
-        const { data } = await axios.get("http://localhost:5000/prices");
+        const { data } = await axios.get("/api/prices");
       setPrices(data);
     } catch (error) {
       console.error("Error fetching prices:", error);

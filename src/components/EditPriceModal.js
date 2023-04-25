@@ -7,8 +7,8 @@ const EditPriceModal = ({ price, onUpdate, onDelete }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await axios.patch(`http://localhost:5000/prices/${price._id}`, { price: newPrice });
-        onUpdate();
+      await axios.patch(`/prices/${price._id}`, { price: newPrice });
+      onUpdate();
     } catch (error) {
       console.error("Error updating price:", error);
     }
@@ -16,7 +16,7 @@ const EditPriceModal = ({ price, onUpdate, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-await axios.delete(`http://localhost:5000/prices/${price._id}`);
+      await axios.delete(`/prices/${price._id}`);
       onDelete();
     } catch (error) {
       console.error("Error deleting price:", error);

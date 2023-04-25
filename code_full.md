@@ -1,4 +1,21 @@
 
+### vercel.json
+
+{
+    "rewrites": [
+      {
+        "source": "/api/(.*)",
+        "destination": "/api/$1"
+      }
+    ],
+    "build": {
+      "env": {
+        "MONGODB_URI": "@mongodb_uri",
+        "ALPHA_VANTAGE_API_KEY": "@alpha_vantage_api_key"
+      }
+    }
+  }
+  
 ### Price.js
 
 const mongoose = require("mongoose");
@@ -18,17 +35,18 @@ const priceSchema = new Schema(
 
 const Price = mongoose.model("Price", priceSchema);
 
-module.exports = Price;
+export default Price;
 
 ### prices.js
 
-const express = require('express');
+import express from 'express';
+import axios from 'axios';
+import Price from '../models/Price';
+
 const router = express.Router();
-const axios = require('axios');
-const Price = require('../models/Price');
 
 // Replace YOUR_API_KEY with your actual Alpha Vantage API key
-const ALPHA_VANTAGE_API_KEY = '5JEXO6JFMUAJ2CG8';
+const ALPHA_VANTAGE_API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
 
 // Get all prices
 router.get('/', async (req, res) => {
@@ -109,7 +127,8 @@ router.get('/:id', async (req, res) => {
     }
   });
 
-module.exports = router;
+  export default router;
+
 
 ### app.js
 
@@ -242,7 +261,7 @@ app.listen(port, () => {
   "scripts": {
     "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
     "start-frontend": "react-scripts start",
-    "start-backend": "node backend/app.js",
+    "start-backend": "nodemon backend/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -323,7 +342,7 @@ const PriceTable = () => {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.get("/prices");
+        const { data } = await axios.get("/api/prices");
       setPrices(data);
     } catch (error) {
       console.error("Error fetching prices:", error);

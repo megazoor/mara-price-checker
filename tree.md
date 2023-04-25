@@ -30,3 +30,4 @@
     |__ reportWebVitals.js
     |__ setupTests.js
 |__ tree.md
+|__ vercel.json

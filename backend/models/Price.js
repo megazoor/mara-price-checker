@@ -15,4 +15,4 @@ const priceSchema = new Schema(
 
 const Price = mongoose.model("Price", priceSchema);
 
-module.exports = Price;
+export default Price;
