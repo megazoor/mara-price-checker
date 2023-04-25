@@ -1,0 +1,32 @@
+.
+|__ README.md
+|__ backend
+    |__ app.js
+    |__ models
+        |__ Price.js
+    |__ routes
+        |__ prices.js
+|__ code_full.md
+|__ file_tree.sh
+|__ package-lock.json
+|__ package.json
+|__ public
+    |__ favicon.ico
+    |__ index.html
+    |__ logo192.png
+    |__ logo512.png
+    |__ manifest.json
+    |__ robots.txt
+|__ src
+    |__ App.css
+    |__ App.js
+    |__ App.test.js
+    |__ components
+        |__ EditPriceModal.js
+        |__ PriceTable.js
+    |__ index.css
+    |__ index.js
+    |__ logo.svg
+    |__ reportWebVitals.js
+    |__ setupTests.js
+|__ tree.md
